@@ -16,7 +16,7 @@ spec:
             restartPolicy: Always
             containers:
                 - name: app-recommender
-                  image: khoimd/elearning-recommender:0.0.2
+                  image: khoimd/elearning-recommender:0.0.3
                   resources:
                       requests:
                           memory: "64Mi"
