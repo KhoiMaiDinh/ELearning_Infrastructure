@@ -7,7 +7,6 @@ metadata:
         app: redpanda
 spec:
     type: ClusterIP
-    clusterIP: None
     selector:
         app: redpanda
     ports:
