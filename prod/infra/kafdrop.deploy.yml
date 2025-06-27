@@ -21,4 +21,4 @@ spec:
                       - containerPort: 9000
                   env:
                       - name: KAFKA_BROKERCONNECT
-                        value: "your-kafka-service:9092" # 🔁 Replace with your Kafka service name
+                        value: "redpanda.infra.svc.cluster.local:9092"
