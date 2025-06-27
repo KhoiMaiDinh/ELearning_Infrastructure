@@ -16,7 +16,7 @@ spec:
             restartPolicy: Always
             containers:
                 - name: app-absa
-                  image: khoimd/elearning-absa:0.0.3
+                  image: khoimd/elearning-asba:0.0.3
                   resources:
                       requests:
                           memory: "64Mi"
