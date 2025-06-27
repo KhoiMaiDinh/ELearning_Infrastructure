@@ -18,7 +18,9 @@ spec:
         spec:
             containers:
                 - name: redpanda
-                  image: docker.redpanda.com/redpandadata/redpanda:v25.1.5 # official Redpanda image
+                  image: docker.redpanda.com/redpandadata/redpanda:v25.1.5
+                  securityContext:
+                      runAsUser: 0
                   args: [
                           "redpanda",
                           "start",
