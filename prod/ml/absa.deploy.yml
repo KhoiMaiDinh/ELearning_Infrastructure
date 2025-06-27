@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dpm-absa
+    namespace: ml
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: app-absa
+    template:
+        metadata:
+            labels:
+                app: app-absa
+        spec:
+            restartPolicy: Always
+            containers:
+                - name: app-absa
+                  image: khoimd/elearning-absa@0.0.2
+                  resources:
+                      requests:
+                          memory: "64Mi"
+                          cpu: "50m"
+                      limits:
+                          memory: "64Mi"
+                          cpu: "100m"
+                  env:
+                      - name: KAFKA_BOOTSTRAP_SERVERS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: absa-config
+                                key: KAFKA_BOOTSTRAP_SERVERS
+                      - name: KAFKA_GROUP_ID
+                        valueFrom:
+                            configMapKeyRef:
+                                name: absa-config
+                                key: KAFKA_GROUP_ID
+                      - name: SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: absa-secret
+                                key: SECRET_KEY
+                      - name: DEBUG
+                        valueFrom:
+                            configMapKeyRef:
+                                name: absa-config
+                                key: DEBUG
+                      - name: PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: absa-config
+                                key: PORT
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: clusterip-absa
+    namespace: ml
+spec:
+    type: ClusterIP
+    selector:
+        app: app-absa
+    ports:
+        - name: http
+          protocol: TCP
+          port: 5000
+          targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: external-clusterip-absa
+    namespace: ml
+    annotations:
+        cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
+spec:
+    type: ExternalName
+    externalName: clusterip-absa.ml.svc.cluster.local
+    ports:
+        - name: app-absa
+        - name: app-absa
+          protocol: TCP
+          port: 5000

@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app
-  namespace: argocd
+    name: argocd-app
+    namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/KhoiMaiDinh/ELearning_Infrastructure.git
-    targetRevision: HEAD
-    path: prod
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: nova_learn
-  
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+    project: default
+    source:
+        repoURL: https://github.com/KhoiMaiDinh/ELearning_Infrastructure.git
+        targetRevision: HEAD
+        path: prod
+    destination:
+        server: https://kubernetes.default.svc
+        namespace: nova-learn
 
-    automated:
-      prune: true
-      selfHeal: true
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true
+
+        automated:
+            prune: true
+            selfHeal: true

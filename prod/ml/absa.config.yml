@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: absa-config
+    namespace: ml
+data:
+    KAFKA_BOOTSTRAP_SERVERS: redpanda.infra.svc.cluster.local
+    KAFKA_GROUP_ID: absa-consumer
+    DEBUG: "false"
+    PORT: "5000"

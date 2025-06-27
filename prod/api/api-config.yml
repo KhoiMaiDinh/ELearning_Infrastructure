@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: app-config
+    namespace: api
+data:
+    NODE_ENV: production
+    MODULES_SET: monolith
+    APP_NAME: Novalearn
+    APP_URL: https://elearning.novalearn.id.vn/
+    APP_PORT: "3000"
+    APP_DEBUG: "false"
+    API_PREFIX: api
+    APP_FALLBACK_LANGUAGE: en
+    APP_LOG_LEVEL: info
+    APP_LOG_SERVICE: console
+    APP_CORS_ORIGIN: https://elearning.novaleasrn.id.vn
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: db-config
+    namespace: api
+data:
+    DATABASE_TYPE: postgres
+    DATABASE_NAME: api_app_db
+    DATABASE_LOGGING: "false"
+    DATABASE_SYNCHRONIZE: "true"
+    DATABASE_MAX_CONNECTIONS: "100"
+    DATABASE_SSL_ENABLED: "true"
+    DATABASE_REJECT_UNAUTHORIZED: "false"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: redis-config
+    namespace: api
+data:
+    REDIS_HOST: redis.infra.svc.cluster.local
+    REDIS_PORT: "6379"
+    REDIS_TLS_ENABLED: "false"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mail-config
+    namespace: api
+data:
+    MAIL_HOST: live.smtp.mailtrap.io
+    MAIL_PORT: "587"
+    MAIL_IGNORE_TLS: "true"
+    MAIL_SECURE: "false"
+    MAIL_REQUIRE_TLS: "false"
+    MAIL_DEFAULT_EMAIL: no-reply@novalearn.id.vn
+    MAIL_DEFAULT_NAME: "Nova Learn"
+    MAIL_CLIENT_PORT: "1080"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: kafka-config
+    namespace: api
+data:
+    KAFKA_CLIENT_ID: api-app-client
+    KAFKA_BROKERS: redpanda.infra.svc.cluster.local
+    KAFKA_GROUP_ID: api-app-group
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: storage-config
+    namespace: api
+data:
+    STORAGE_HOST: https://storage.googleapis.com
+    STORAGE_PORT: "9000"
+    STORAGE_USE_SSL: "false"
+    STORAGE_BUCKET: novalearn-images
+    STORAGE_URL_EXPIRES_IN: "1d"
+    STORAGE_PATH: https://storage.googleapis.com
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: auth-config
+    namespace: api
+data:
+    AUTH_JWT_TOKEN_EXPIRES_IN: "1d"
+    AUTH_REFRESH_TOKEN_EXPIRES_IN: "180d"
+    AUTH_FORGOT_TOKEN_EXPIRES_IN: "7d"
+    AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN: "1d"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: payment-config
+    namespace: api
+data:
+    PAYMENT_STRIPE_RETURN_URL: https://yourapp.com/return
+    PAYMENT_VNP_URL:PAYMENT_VNP_URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    PAYMENT_VNP_RETURN_URL: https://elearning.novalearn.id.vn/checkout
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: recommender-config
+    namespace: api
+data:
+    RECOMMENDER_BASE_URL: http://clusterip-recommender.ml.svc.cluster.local

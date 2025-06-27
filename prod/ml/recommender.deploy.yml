@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dpm-recommender
+    namespace: ml
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: app-recommender
+    template:
+        metadata:
+            labels:
+                app: app-recommender
+        spec:
+            restartPolicy: Always
+            containers:
+                - name: app-recommender
+                  image: khoimd/elearning-recommender@0.0.1
+                  resources:
+                      requests:
+                          memory: "64Mi"
+                          cpu: "50m"
+                      limits:
+                          memory: "64Mi"
+                          cpu: "100m"
+                  env:
+                      - name: DB_SERVER
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: DB_SERVER
+                      - name: DB_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: DB_HOST
+                      - name: DB_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: DB_PORT
+                      - name: DB_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: DB_NAME
+                      - name: DB_USERNAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: recommender-secret
+                                key: DB_USERNAME
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: recommender-secret
+                                key: DB_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: clusterip-recommender
+    namespace: ml
+spec:
+    type: ClusterIP
+    selector:
+        app: app-recommender
+    ports:
+        - name: http
+          protocol: TCP
+          port: 3000
+          targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: external-clusterip-recommender
+    namespace: ml
+    annotations:
+        cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
+spec:
+    type: ExternalName
+    externalName: clusterip-recommender.ml.svc.cluster.local
+    ports:
+        - name: app-recommender
+        - name: app-recommender
+          protocol: TCP
+          port: 3000

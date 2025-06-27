@@ -1,0 +1,393 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dpm-api
+    namespace: api
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: app-api
+    template:
+        metadata:
+            labels:
+                app: app-api
+        spec:
+            restartPolicy: Always
+            containers:
+                - name: app-api
+                  image: khoimd/elearning-api@0.0.2
+                  resources:
+                      requests:
+                          memory: "64Mi"
+                          cpu: "50m"
+                      limits:
+                          memory: "64Mi"
+                          cpu: "100m"
+
+                  env:
+                      - name: NODE_ENV
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: NODE_ENV
+                      - name: MODULES_SET
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: MODULES_SET
+                      - name: APP_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_NAME
+                      - name: APP_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_URL
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_PORT
+                      - name: APP_DEBUG
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_DEBUG
+                      - name: API_PREFIX
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: API_PREFIX
+                      - name: APP_FALLBACK_LANGUAGE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_FALLBACK_LANGUAGE
+                      - name: APP_LOG_LEVEL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_LOG_LEVEL
+                      - name: APP_LOG_SERVICE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_LOG_SERVICE
+                      - name: APP_CORS_ORIGIN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: app-config
+                                key: APP_CORS_ORIGIN
+                      - name: DATABASE_TYPE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_TYPE
+                      - name: DATABASE_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: db-secrets
+                                key: DATABASE_HOST
+                      - name: DATABASE_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: db-secrets
+                                key: DATABASE_PORT
+                      - name: DATABASE_USERNAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: db-secrets
+                                key: DATABASE_USERNAME
+                      - name: DATABASE_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: db-secrets
+                                key: DATABASE_PASSWORD
+                      - name: DATABASE_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_NAME
+                      - name: DATABASE_LOGGING
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_LOGGING
+                      - name: DATABASE_SYNCHRONIZE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_SYNCHRONIZE
+                      - name: DATABASE_MAX_CONNECTIONS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_MAX_CONNECTIONS
+                      - name: DATABASE_SSL_ENABLED
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_SSL_ENABLED
+                      - name: DATABASE_REJECT_UNAUTHORIZED
+                        valueFrom:
+                            configMapKeyRef:
+                                name: db-config
+                                key: DATABASE_REJECT_UNAUTHORIZED
+                      - name: REDIS_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: redis-config
+                                key: REDIS_HOST
+                      - name: REDIS_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: redis-config
+                                key: REDIS_PORT
+                      - name: REDIS_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: redis-secrets
+                                key: REDIS_PASSWORD
+                      - name: REDIS_TLS_ENABLED
+                        valueFrom:
+                            configMapKeyRef:
+                                name: redis-config
+                                key: REDIS_TLS_ENABLED
+                      - name: MAIL_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_HOST
+                      - name: MAIL_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_PORT
+                      - name: MAIL_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: mail-secrets
+                                key: MAIL_USER
+                      - name: MAIL_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: mail-secrets
+                                key: MAIL_PASSWORD
+                      - name: MAIL_IGNORE_TLS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_IGNORE_TLS
+                      - name: MAIL_SECURE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_SECURE
+                      - name: MAIL_REQUIRE_TLS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_REQUIRE_TLS
+                      - name: MAIL_DEFAULT_EMAIL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_DEFAULT_EMAIL
+                      - name: MAIL_DEFAULT_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_DEFAULT_NAME
+                      - name: MAIL_CLIENT_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mail-config
+                                key: MAIL_CLIENT_PORT
+                      - name: KAFKA_CLIENT_ID
+                        valueFrom:
+                            configMapKeyRef:
+                                name: kafka-config
+                                key: KAFKA_CLIENT_ID
+                      - name: KAFKA_BROKERS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: kafka-config
+                                key: KAFKA_BROKERS
+                      - name: KAFKA_GROUP_ID
+                        valueFrom:
+                            configMapKeyRef:
+                                name: kafka-config
+                                key: KAFKA_GROUP_ID
+                      - name: STORAGE_ACCESS_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: storage-secrets
+                                key: STORAGE_ACCESS_KEY
+                      - name: STORAGE_SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: storage-secrets
+                                key: STORAGE_SECRET_KEY
+                      - name: STORAGE_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_HOST
+                      - name: STORAGE_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_PORT
+                      - name: STORAGE_USE_SSL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_USE_SSL
+                      - name: STORAGE_BUCKET
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_BUCKET
+                      - name: STORAGE_URL_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_URL_EXPIRES_IN
+                      - name: STORAGE_PATH
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_PATH
+                      - name: AUTH_JWT_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_JWT_SECRET
+                      - name: AUTH_JWT_TOKEN_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: AUTH_JWT_TOKEN_EXPIRES_IN
+                      - name: AUTH_REFRESH_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_REFRESH_SECRET
+                      - name: AUTH_REFRESH_TOKEN_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: AUTH_REFRESH_TOKEN_EXPIRES_IN
+                      - name: AUTH_FORGOT_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_FORGOT_SECRET
+                      - name: AUTH_FORGOT_TOKEN_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: AUTH_FORGOT_TOKEN_EXPIRES_IN
+                      - name: AUTH_CONFIRM_EMAIL_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_CONFIRM_EMAIL_SECRET
+                      - name: AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN
+                      - name: AUTH_GOOGLE_CLIENT_ID
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_GOOGLE_CLIENT_ID
+                      - name: AUTH_GOOGLE_CLIENT_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_GOOGLE_CLIENT_SECRET
+                      - name: AUTH_FACEBOOK_APP_ID
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_FACEBOOK_APP_ID
+                      - name: AUTH_FACEBOOK_CLIENT_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: auth-secrets
+                                key: AUTH_FACEBOOK_CLIENT_SECRET
+                      - name: PAYMENT_STRIPE_SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: payment-secrets
+                                key: PAYMENT_STRIPE_SECRET_KEY
+                      - name: PAYMENT_STRIPE_RETURN_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: payment-config
+                                key: PAYMENT_STRIPE_RETURN_URL
+                      - name: PAYMENT_STRIPE_WEBHOOK_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: payment-secrets
+                                key: PAYMENT_STRIPE_WEBHOOK_SECRET
+                      - name: PAYMENT_VNP_TMN_CODE
+                        valueFrom:
+                            secretKeyRef:
+                                name: payment-secrets
+                                key: PAYMENT_VNP_TMN_CODE
+                      - name: PAYMENT_VNP_HASH_SECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: payment-secrets
+                                key: PAYMENT_VNP_HASH_SECRET
+                      - name: PAYMENT_VNP_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: payment-config
+                                key: PAYMENT_VNP_URL
+                      - name: PAYMENT_VNP_RETURN_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: payment-config
+                                key: PAYMENT_VNP_RETURN_URL
+                      - name: RECOMMENDER_BASE_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: RECOMMENDER_BASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: clusterip-api
+    namespace: api
+spec:
+    type: ClusterIP
+    selector:
+        app: app-api
+    ports:
+        - name: http
+          protocol: TCP
+          port: 3000
+          targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: external-clusterip-api
+    namespace: api
+    annotations:
+        cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
+spec:
+    type: ExternalName
+    externalName: cluterip-api.api.svc.cluster.local
+    ports:
+        - name: app-api
+          protocol: TCP
+          port: 3000
