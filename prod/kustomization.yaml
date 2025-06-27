@@ -1,6 +1,0 @@
-resources:
-    - namespace.yaml
-    - api/
-    - ml/
-    - infra/
-    - ingress/
