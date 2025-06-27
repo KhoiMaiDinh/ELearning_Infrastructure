@@ -78,6 +78,5 @@ spec:
     externalName: clusterip-absa.ml.svc.cluster.local
     ports:
         - name: app-absa
-        - name: app-absa
           protocol: TCP
           port: 5000
