@@ -18,7 +18,7 @@ spec:
                 - name: app-api
                   image: khoimd/elearning-api:0.0.2
                   resources:
-                      requests:s
+                      requests:
                           memory: "64Mi"
                           cpu: "50m"
                       limits:
