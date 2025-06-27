@@ -55,6 +55,11 @@ spec:
                             secretKeyRef:
                                 name: recommender-secret
                                 key: DB_PASSWORD
+                      - name: PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: recommender-config
+                                key: PORT
 ---
 apiVersion: v1
 kind: Service
@@ -68,8 +73,8 @@ spec:
     ports:
         - name: http
           protocol: TCP
-          port: 3000
-          targetPort: 3000
+          port: 5001
+          targetPort: 5001
 ---
 apiVersion: v1
 kind: Service
@@ -83,6 +88,5 @@ spec:
     externalName: clusterip-recommender.ml.svc.cluster.local
     ports:
         - name: app-recommender
-        - name: app-recommender
           protocol: TCP
-          port: 3000
+          port: 5001
