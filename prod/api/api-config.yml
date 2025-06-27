@@ -96,7 +96,7 @@ metadata:
     namespace: api
 data:
     PAYMENT_STRIPE_RETURN_URL: https://yourapp.com/return
-    PAYMENT_VNP_URL:PAYMENT_VNP_URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    PAYMENT_VNP_URL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
     PAYMENT_VNP_RETURN_URL: https://elearning.novalearn.id.vn/checkout
 ---
 apiVersion: v1
