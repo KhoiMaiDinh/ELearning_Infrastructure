@@ -19,11 +19,11 @@ spec:
                   image: khoimd/elearning-recommender:0.0.6
                   resources:
                       requests:
-                          memory: "64Mi"
-                          cpu: "100m"
-                      limits:
                           memory: "128Mi"
-                          cpu: "150m"
+                          cpu: "200"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "250m"
                   env:
                       - name: DB_SERVER
                         valueFrom:
