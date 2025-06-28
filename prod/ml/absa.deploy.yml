@@ -19,11 +19,11 @@ spec:
                   image: khoimd/elearning-absa:0.0.5
                   resources:
                       requests:
-                          memory: "256Mi"
+                          memory: "512Mi"
                           cpu: "200m"
                       limits:
-                          memory: "512Mi"
-                          cpu: "250"
+                          memory: "1024Mi"
+                          cpu: "400m"
                   env:
                       - name: KAFKA_BOOTSTRAP_SERVERS
                         valueFrom:
