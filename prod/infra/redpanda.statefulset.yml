@@ -30,6 +30,10 @@ spec:
                           "512Mi",
                           "--overprovisioned",
                           "--check=false",
+                          "--kafka-addr",
+                          "INSIDE://0.0.0.0:9092",
+                          "--advertise-kafka-addr",
+                          "INSIDE://redpanda.infra.svc.cluster.local:9092",
                       ] # minimal resource flags
                   ports:
                       - name: kafka
