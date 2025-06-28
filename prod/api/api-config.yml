@@ -62,7 +62,7 @@ metadata:
     namespace: api
 data:
     KAFKA_CLIENT_ID: api-app-client
-    KAFKA_BROKERS: redpanda.infra.svc.cluster.local
+    KAFKA_BROKERS: redpanda.infra.svc.cluster.local:9092
     KAFKA_GROUP_ID: api-app-group
 ---
 apiVersion: v1
