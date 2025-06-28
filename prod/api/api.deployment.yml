@@ -17,13 +17,13 @@ spec:
             containers:
                 - name: app-api
                   image: khoimd/elearning-api:0.0.2
-                  resources:
-                      requests:
-                          memory: "512Mi"
-                          cpu: "250m"
-                      limits:
-                          memory: "512Mi"
-                          cpu: "250m"
+                  #   resources:
+                  #       requests:
+                  #           memory: "512Mi"
+                  #           cpu: "250m"
+                  #       limits:
+                  #           memory: "512Mi"
+                  #           cpu: "250m"
                   env:
                       - name: NODE_ENV
                         valueFrom:
