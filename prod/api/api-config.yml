@@ -23,7 +23,7 @@ metadata:
     namespace: api
 data:
     DATABASE_TYPE: postgres
-    DATABASE_NAME: api_app_db
+    DATABASE_NAME: postgres
     DATABASE_LOGGING: "false"
     DATABASE_SYNCHRONIZE: "true"
     DATABASE_MAX_CONNECTIONS: "100"
