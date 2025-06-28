@@ -19,11 +19,11 @@ spec:
                   image: khoimd/elearning-api:0.0.2
                   resources:
                       requests:
-                          memory: "128Mi"
-                          cpu: "100m"
+                          memory: "512Mi"
+                          cpu: "250m"
                       limits:
                           memory: "512Mi"
-                          cpu: "250"
+                          cpu: "250m"
                   env:
                       - name: NODE_ENV
                         valueFrom:
