@@ -19,8 +19,8 @@ spec:
                   image: khoimd/elearning-absa:0.0.5
                   resources:
                       requests:
-                          memory: "128Mi"
-                          cpu: "100m"
+                          memory: "256Mi"
+                          cpu: "200m"
                       limits:
                           memory: "512Mi"
                           cpu: "250"
