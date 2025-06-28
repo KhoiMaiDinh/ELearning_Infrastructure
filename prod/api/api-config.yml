@@ -71,9 +71,9 @@ metadata:
     name: storage-config
     namespace: api
 data:
-    STORAGE_HOST: https://storage.googleapis.com
-    STORAGE_PORT: "9000"
-    STORAGE_USE_SSL: "false"
+    STORAGE_HOST: storage.googleapis.com
+    STORAGE_PORT: "443"
+    STORAGE_USE_SSL: "true"
     STORAGE_BUCKET: novalearn-images
     STORAGE_URL_EXPIRES_IN: "1d"
     STORAGE_PATH: https://storage.googleapis.com
