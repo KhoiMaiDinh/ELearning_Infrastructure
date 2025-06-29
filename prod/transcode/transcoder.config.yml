@@ -18,7 +18,7 @@ data:
     REDIS_PORT: "6379"
     REDIS_TLS_ENABLED: "false"
     KAFKA_CLIENT_ID: transcoder-app-client
-    KAFKA_BROKERS: kafka.default.svc.cluster.local:9092
+    KAFKA_BROKERS: redpanda.infra.svc.cluster.local:9092
     KAFKA_GROUP_ID: transcoder-app-group-1
     STORAGE_HOST: storage.googleapis.com
     STORAGE_PORT: "443"
