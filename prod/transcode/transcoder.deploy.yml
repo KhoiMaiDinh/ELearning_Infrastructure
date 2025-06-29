@@ -77,12 +77,12 @@ spec:
                                 key: APP_CORS_ORIGIN
                       - name: REDIS_HOST
                         valueFrom:
-                            secretKeyRef:
+                            configMapKeyRef:
                                 name: transcoder-config
                                 key: REDIS_HOST
                       - name: REDIS_PORT
                         valueFrom:
-                            secretKeyRef:
+                            configMapKeyRef:
                                 name: transcoder-config
                                 key: REDIS_PORT
                       - name: REDIS_PASSWORD
