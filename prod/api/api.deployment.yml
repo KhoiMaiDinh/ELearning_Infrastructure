@@ -380,7 +380,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: external-clusterip-api
-    namespace: api
+    namespace: ingress
     annotations:
         cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
 spec:
