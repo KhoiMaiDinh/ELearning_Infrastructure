@@ -385,7 +385,7 @@ metadata:
         cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
 spec:
     type: ExternalName
-    externalName: cluterip-api.api.svc.cluster.local
+    externalName: clusterip-api.api.svc.cluster.local
     ports:
         - name: app-api
           protocol: TCP
