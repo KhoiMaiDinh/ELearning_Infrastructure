@@ -6,12 +6,13 @@ metadata:
 spec:
     ingressClassName: nginx
     rules:
-        http:
-            paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                      service:
-                          name: external-clusterip-api
-                          port:
-                              number: 3000
+        - host: posts.com
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: external-clusterip-api
+                            port:
+                                number: 3000
