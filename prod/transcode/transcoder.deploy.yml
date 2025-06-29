@@ -1,0 +1,178 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dpm-transcoder
+    namespace: transcode
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: app-transcoder
+    template:
+        metadata:
+            labels:
+                app: app-transcoder
+        spec:
+            restartPolicy: Always
+            containers:
+                - name: app-transcoder
+                  image: khoimd/elearning-transcoder:0.0.2
+                  resources:
+                      requests:
+                          memory: "512Mi"
+                          cpu: "200m"
+                      limits:
+                          memory: "1024Mi"
+                          cpu: "400m"
+                  env:
+                      - name: NODE_ENV
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: NODE_ENV
+                      - name: APP_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_NAME
+                      - name: APP_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_URL
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_PORT
+                      - name: APP_DEBUG
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_DEBUG
+                      - name: API_PREFIX
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: API_PREFIX
+                      - name: APP_FALLBACK_LANGUAGE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_FALLBACK_LANGUAGE
+                      - name: APP_LOG_LEVEL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_LOG_LEVEL
+                      - name: APP_LOG_SERVICE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_LOG_SERVICE
+                      - name: APP_CORS_ORIGIN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: APP_CORS_ORIGIN
+                      - name: REDIS_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: transcoder-config
+                                key: REDIS_HOST
+                      - name: REDIS_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: transcoder-config
+                                key: REDIS_PORT
+                      - name: REDIS_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: transcoder-secret
+                                key: REDIS_PASSWORD
+                      - name: REDIS_TLS_ENABLED
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: REDIS_TLS_ENABLED
+                      - name: KAFKA_CLIENT_ID
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: KAFKA_CLIENT_ID
+                      - name: KAFKA_BROKERS
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: KAFKA_BROKERS
+                      - name: KAFKA_GROUP_ID
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: KAFKA_GROUP_ID
+                      - name: STORAGE_ACCESS_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: transcoder-secret
+                                key: STORAGE_ACCESS_KEY
+                      - name: STORAGE_SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: transcoder-secret
+                                key: STORAGE_SECRET_KEY
+                      - name: STORAGE_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: STORAGE_HOST
+                      - name: STORAGE_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: STORAGE_PORT
+                      - name: STORAGE_BUCKET
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: STORAGE_BUCKET
+                      - name: STORAGE_URL_EXPIRES_IN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: STORAGE_URL_EXPIRES_IN
+                      - name: STORAGE_PATH
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: STORAGE_PATH
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: clusterip-absa
+    namespace: ml
+spec:
+    type: ClusterIP
+    selector:
+        app: app-absa
+    ports:
+        - name: http
+          protocol: TCP
+          port: 5000
+          targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: external-clusterip-absa
+    namespace: ml
+    annotations:
+        cloud.google.com/backend-config: '{"default": "health-check-backend-config"}'
+spec:
+    type: ExternalName
+    externalName: clusterip-absa.ml.svc.cluster.local
+    ports:
+        - name: app-absa
+          protocol: TCP
+          port: 5000

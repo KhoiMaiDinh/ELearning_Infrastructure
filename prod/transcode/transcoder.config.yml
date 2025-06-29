@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: transcoder-config
+    namespace: transcode
+data:
+    NODE_ENV: production
+    APP_NAME: "Novalearn Transcoder"
+    APP_URL: https://elearning.novalearn.id.vn/
+    APP_PORT: "3001"
+    APP_DEBUG: "false"
+    API_PREFIX: api
+    APP_FALLBACK_LANGUAGE: en
+    APP_LOG_LEVEL: info
+    APP_LOG_SERVICE: console
+    APP_CORS_ORIGIN: "*"
+    REDIS_HOST: redis.default.svc.cluster.local
+    REDIS_PORT: "6379"
+    REDIS_TLS_ENABLED: "false"
+    KAFKA_CLIENT_ID: transcoder-app-client
+    KAFKA_BROKERS: kafka.default.svc.cluster.local:9092
+    KAFKA_GROUP_ID: transcoder-app-group-1
+    STORAGE_HOST: http://minio.default.svc.cluster.local
+    STORAGE_PORT: "9000"
+    STORAGE_BUCKET: elearning-images
+    STORAGE_URL_EXPIRES_IN: "1d"
+    STORAGE_PATH: uploads/videos

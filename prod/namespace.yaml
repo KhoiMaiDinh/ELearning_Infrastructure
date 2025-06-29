@@ -6,6 +6,11 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+    name: transcode
+---
+apiVersion: v1
+kind: Namespace
+metadata:
     name: ml
 ---
 apiVersion: v1
