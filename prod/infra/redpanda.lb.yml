@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: redpanda-lb
+    namespace: infra
+    labels:
+        app: redpanda
+    annotations:
+        cloud.google.com/load-balancer-type: "Internal" # GCP internal LB
+spec:
+    type: LoadBalancer
+    selector:
+        app: redpanda
+    ports:
+        - name: kafka
+          port: 9092
+          targetPort: 9092
+        - name: rpc
+          port: 33145
+          targetPort: 33145
