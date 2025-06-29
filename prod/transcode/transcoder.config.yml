@@ -14,7 +14,7 @@ data:
     APP_LOG_LEVEL: info
     APP_LOG_SERVICE: console
     APP_CORS_ORIGIN: "*"
-    REDIS_HOST: redis.default.svc.cluster.local
+    REDIS_HOST: redis.infra.svc.cluster.local
     REDIS_PORT: "6379"
     REDIS_TLS_ENABLED: "false"
     KAFKA_CLIENT_ID: transcoder-app-client
