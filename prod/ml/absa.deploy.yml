@@ -17,13 +17,13 @@ spec:
             containers:
                 - name: app-absa
                   image: khoimd/elearning-absa:0.0.5
-                  resources:
-                      requests:
-                          memory: "512Mi"
-                          cpu: "200m"
-                      limits:
-                          memory: "1024Mi"
-                          cpu: "400m"
+                  #   resources:
+                  #       requests:
+                  #           memory: "512Mi"
+                  #           cpu: "200m"
+                  #       limits:
+                  #           memory: "1024Mi"
+                  #           cpu: "400m"
                   env:
                       - name: KAFKA_BOOTSTRAP_SERVERS
                         valueFrom:
