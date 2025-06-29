@@ -20,8 +20,8 @@ data:
     KAFKA_CLIENT_ID: transcoder-app-client
     KAFKA_BROKERS: kafka.default.svc.cluster.local:9092
     KAFKA_GROUP_ID: transcoder-app-group-1
-    STORAGE_HOST: http://minio.default.svc.cluster.local
-    STORAGE_PORT: "9000"
-    STORAGE_BUCKET: elearning-images
+    STORAGE_HOST: storage.googleapis.com
+    STORAGE_PORT: "443"
+    STORAGE_BUCKET: novalearn-images
     STORAGE_URL_EXPIRES_IN: "1d"
-    STORAGE_PATH: uploads/videos
+    STORAGE_PATH: https://storage.googleapis.com
