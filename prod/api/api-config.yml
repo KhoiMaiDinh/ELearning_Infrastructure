@@ -14,7 +14,7 @@ data:
     APP_FALLBACK_LANGUAGE: en
     APP_LOG_LEVEL: info
     APP_LOG_SERVICE: console
-    APP_CORS_ORIGIN: https://elearning.novaleasrn.id.vn
+    APP_CORS_ORIGIN: "elearning.novaleasrn.id.vn,cms-elearning.novalearn.id.vn"
 ---
 apiVersion: v1
 kind: ConfigMap
