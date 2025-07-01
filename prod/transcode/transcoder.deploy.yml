@@ -16,7 +16,7 @@ spec:
             restartPolicy: Always
             containers:
                 - name: app-transcoder
-                  image: khoimd/elearning-transcoder:0.0.14
+                  image: khoimd/elearning-transcoder:0.0.15
                   resources:
                       requests:
                           memory: "512Mi"
@@ -150,6 +150,11 @@ spec:
                             configMapKeyRef:
                                 name: transcoder-config
                                 key: S3_ENDPOINT
+                      - name: S3_REGION
+                        valueFrom:
+                            configMapKeyRef:
+                                name: transcoder-config
+                                key: S3_REGION
                   volumeMounts:
                       - name: docker-socket
                         mountPath: /var/run/docker.sock
