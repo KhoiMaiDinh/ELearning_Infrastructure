@@ -155,11 +155,11 @@ spec:
                             configMapKeyRef:
                                 name: transcoder-config
                                 key: S3_REGION
-                      - name: TRANSCODER_JOB_IMAGE
+                      - name: TRANSCODE_JOB_IMAGE
                         valueFrom:
                             configMapKeyRef:
                                 name: transcoder-config
-                                key: TRANSCODER_JOB_IMAGE
+                                key: TRANSCODE_JOB_IMAGE
                   volumeMounts:
                       - name: docker-socket
                         mountPath: /var/run/docker.sock
