@@ -260,7 +260,7 @@ spec:
                             configMapKeyRef:
                                 name: storage-config
                                 key: STORAGE_PATH
-                      -  name: STORAGE_REGION
+                      - name: STORAGE_REGION
                         valueFrom:
                             configMapKeyRef:
                                 name: storage-config
