@@ -26,5 +26,5 @@ data:
     STORAGE_URL_EXPIRES_IN: "1d"
     STORAGE_PATH: https://storage.googleapis.com
     S3_ENDPOINT: https://storage.googleapis.com
-    S3_REGION: asia-southeast1
+    S3_REGION: auto
     TRANSCODE_JOB_IMAGE: khoimd/transcoder-job:0.0.1
