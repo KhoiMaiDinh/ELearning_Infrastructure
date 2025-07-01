@@ -260,6 +260,11 @@ spec:
                             configMapKeyRef:
                                 name: storage-config
                                 key: STORAGE_PATH
+                      -  name: STORAGE_REGION
+                        valueFrom:
+                            configMapKeyRef:
+                                name: storage-config
+                                key: STORAGE_REGION
                       - name: AUTH_JWT_SECRET
                         valueFrom:
                             secretKeyRef:
