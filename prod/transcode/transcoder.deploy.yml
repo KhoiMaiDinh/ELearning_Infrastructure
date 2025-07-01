@@ -16,7 +16,7 @@ spec:
             restartPolicy: Always
             containers:
                 - name: app-transcoder
-                  image: khoimd/elearning-transcoder:0.0.15
+                  image: khoimd/elearning-transcoder:0.0.16
                   resources:
                       requests:
                           memory: "512Mi"
