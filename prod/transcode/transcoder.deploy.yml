@@ -160,10 +160,6 @@ spec:
                             configMapKeyRef:
                                 name: transcoder-config
                                 key: TRANSCODER_JOB_IMAGE
-                        valueFrom:
-                            configMapKeyRef:
-                                name: transcoder-config
-                                key: S3_SIGNATURE_VERSION
                   volumeMounts:
                       - name: docker-socket
                         mountPath: /var/run/docker.sock
