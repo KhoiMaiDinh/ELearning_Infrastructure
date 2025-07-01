@@ -27,4 +27,4 @@ data:
     STORAGE_PATH: https://storage.googleapis.com
     S3_ENDPOINT: https://storage.googleapis.com
     S3_REGION: auto
-    TRANSCODE_JOB_IMAGE: khoimd/transcoder-job:0.0.6
+    TRANSCODE_JOB_IMAGE: khoimd/transcoder-job:0.0.8
