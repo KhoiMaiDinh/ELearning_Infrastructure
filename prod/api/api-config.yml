@@ -106,4 +106,4 @@ metadata:
     name: recommender-config
     namespace: api
 data:
-    RECOMMENDER_BASE_URL: http://clusterip-recommender.ml.svc.cluster.local
+    RECOMMENDER_BASE_URL: http://clusterip-recommender.ml.svc.cluster.local:5001
