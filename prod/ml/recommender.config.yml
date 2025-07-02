@@ -7,5 +7,5 @@ data:
     DB_SERVER: 34.87.138.30:5432
     DB_HOST: 34.87.138.30
     DB_PORT: "5432"
-    DB_NAME: api_app_db
+    DB_NAME: postgres
     PORT: "5001"
