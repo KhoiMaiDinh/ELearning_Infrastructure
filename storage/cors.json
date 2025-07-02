@@ -1,0 +1,13 @@
+[
+    {
+        "origin": [
+            "https://elearning.novalearn.id.vn",
+            "https://cms-elearning.novalearn.id.vn"
+        ],
+        "method": ["GET", "PUT", "POST"],
+        "responseHeader": ["Content-Type"],
+        "maxAgeSeconds": 3600
+    }
+    
+]
+
