@@ -4,9 +4,11 @@ This repository manages the **Kubernetes infrastructure** for the NovaLearn plat
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=git,kubernetes,docker,gcp" />
-  <img src="assets/argocd.svg" height="40" alt="Argo CD" />
+  <span style="background-color:#000; display:inline-block; padding:6px; border-radius:8px;">
+    <img src="assets/argocd.svg" height="45" alt="Argo CD" />
+  </span>
 </p>
----
+
 
 ## 🧭 Project Structure
 
