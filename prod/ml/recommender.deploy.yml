@@ -73,8 +73,8 @@ spec:
     ports:
         - name: http
           protocol: TCP
-          port: 5001
-          targetPort: 5001
+          port: 5000
+          targetPort: 5000
 ---
 apiVersion: v1
 kind: Service
@@ -89,4 +89,4 @@ spec:
     ports:
         - name: app-recommender
           protocol: TCP
-          port: 5001
+          port: 5000

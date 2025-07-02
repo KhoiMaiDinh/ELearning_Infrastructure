@@ -8,4 +8,4 @@ data:
     DB_HOST: 34.87.138.30
     DB_PORT: "5432"
     DB_NAME: postgres
-    PORT: "5001"
+    PORT: "5000"
