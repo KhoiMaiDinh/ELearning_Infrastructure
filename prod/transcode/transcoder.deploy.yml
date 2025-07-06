@@ -4,7 +4,7 @@ metadata:
     name: dpm-transcoder
     namespace: transcode
 spec:
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
             app: app-transcoder
@@ -17,13 +17,13 @@ spec:
             containers:
                 - name: app-transcoder
                   image: khoimd/elearning-transcoder:0.0.21
-                  resources:
-                      requests:
-                          memory: "256Mi"
-                          cpu: "100m"
-                      limits:
-                          memory: "1024Mi"
-                          cpu: "400m"
+                  #   resources:
+                  #       requests:
+                  #           memory: "256Mi"
+                  #           cpu: "100m"
+                  #       limits:
+                  #           memory: "1024Mi"
+                  #           cpu: "400m"
                   env:
                       - name: NODE_ENV
                         valueFrom:
