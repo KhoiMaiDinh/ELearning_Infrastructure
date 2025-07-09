@@ -16,7 +16,7 @@ spec:
             restartPolicy: Always
             containers:
                 - name: app-api
-                  image: khoimd/elearning-api:0.0.22
+                  image: khoimd/elearning-api:0.0.23
                   #   resources:
                   #       requests:
                   #           memory: "512Mi"
